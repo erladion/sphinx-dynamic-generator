@@ -16,7 +16,7 @@ author = 'erladion'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['myst_parser']
+extensions = ['myst_parser', 'sphinx.ext.duration']
 
 source_suffix = {
     '.rst': 'restructuredtext',
@@ -47,7 +47,7 @@ html_theme_options = {
     'style_nav_header_background': '#2980B9',
 }
 
-html_logo = "_static/logo_3.png"
+html_logo = "_static/logo_3.png"    
 html_css_files = ['style.css']
 
 # --- Dynamic html_static_path Configuration ---
@@ -79,3 +79,41 @@ html_static_path = ['_static'] + dynamic_static_paths
 html_static_path = list(set(html_static_path))
 
 print(f"Sphinx found static paths: {html_static_path}")
+
+
+# In source/conf.py
+
+latex_elements = {
+    # Fix 1: Only include graphicx.
+    'preamble': r'''
+\usepackage{graphicx}
+''',
+    
+    # Custom maketitle definition to place the logo precisely between author and date.
+    # We now use the internal LaTeX macros (\@title, \@author, \@date).
+    'maketitle': r'''
+\makeatletter
+\begin{titlepage}
+    \centering
+    
+    % --- 1. TITLE ---
+    \Huge \bfseries \@title \par % Document Title (using internal macro)
+    \vskip 4em
+
+    % --- 2. AUTHOR ---
+    \Large \@author \par % Author (using internal macro)
+    \vskip 2em
+    
+    % --- 3. LOGO INSERTION POINT (CENTERED) ---
+    \includegraphics[width=10cm]{logo_3.png} \par
+    \vskip 2em % Space after logo
+    
+    % --- 4. DATE ---
+    \Large \@date \par % Date (using internal macro)
+    \vskip 4em
+    
+    \vfill % Pushes content to the top
+\end{titlepage}
+\makeatother
+'''
+}
