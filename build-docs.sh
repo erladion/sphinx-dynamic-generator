@@ -16,6 +16,7 @@
 CLEAN_SOURCE_DIR=""
 DOCS_BUILD_DIR=""
 BUILD_PDF="no"
+BUILD_SIMPLEPDF="no"
 BUILD_SINGLEHTML="no"
 SKIP_CLEANUP="no"
 
@@ -35,6 +36,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --build-pdf)
             BUILD_PDF="yes"
+            shift # past argument
+            ;;
+        --build-simplepdf)
+            BUILD_SIMPLEPDF="yes"
             shift # past argument
             ;;
         --build-singlehtml)
@@ -203,6 +208,11 @@ if [ "$BUILD_PDF" == "yes" ]; then
     fi
 else
     echo "   -> Skipping PDF build as requested via flag."
+fi
+
+if [ "$BUILD_SIMPLEPDF" == "yes" ]; then
+    echo $pwd
+    sphinx-build -b simplepdf . "$EXEC_ROOT/$DOCS_BUILD_DIR/simplepdf"
 fi
 
 # --- 5. Cleanup ---
