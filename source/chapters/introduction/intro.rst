@@ -14,4 +14,4 @@ and outlines the primary goals of its integration into the main system.
 
 For detailed installation steps, proceed to the next section.
 
-:ref:`Installation details <chapters/chapter3/anchors1#installation-anchor>`
+:ref:`Installation details <installation-anchor>`
