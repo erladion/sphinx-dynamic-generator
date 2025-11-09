@@ -17,6 +17,7 @@ CLEAN_SOURCE_DIR=""
 DOCS_BUILD_DIR=""
 BUILD_PDF="no"
 BUILD_SINGLEHTML="no"
+SKIP_CLEANUP="no"
 
 # Parse named flags using a loop
 while [[ $# -gt 0 ]]; do
@@ -39,6 +40,10 @@ while [[ $# -gt 0 ]]; do
         --build-singlehtml)
             BUILD_SINGLEHTML="yes"
             shift # past argument
+            ;;
+        --skip-cleanup)
+            SKIP_CLEANUP="yes"
+            shift
             ;;
         *)    # unknown option
             echo "ERROR: Unknown option '$1'"
@@ -208,6 +213,8 @@ echo "--- 5. Cleaning up temporary source folder ---"
 cd "$EXEC_ROOT"
 
 # Remove the entire temporary source directory
-rm -rf "$TEMP_SOURCE_DIR"
+if [ "$SKIP_CLEANUP" == "no" ]; then
+    rm -rf "$TEMP_SOURCE_DIR"
+fi
 
 echo "✅ Documentation build complete. HTML available in $DOCS_BUILD_DIR/$HTML_BUILDER. Original source '$CLEAN_SOURCE_DIR' remains clean."
