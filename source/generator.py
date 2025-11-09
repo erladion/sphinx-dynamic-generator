@@ -134,7 +134,7 @@ def process_directory(root_dir: str, directory_path: str, chapter_relative_path:
     if not os.path.isdir(directory_path):
         return []
 
-    print(f"\nProcessing directory: {directory_path}")
+    print(f"\n🔨 Processing directory: {directory_path}")
     
     items_to_link = []
     
@@ -226,35 +226,39 @@ def process_directory(root_dir: str, directory_path: str, chapter_relative_path:
             
     # 4. WRITE THE INDEX.RST FILE
     
-    # Get the title for the index file from the last part of the path
-    chapter_title = os.path.basename(directory_path)
     # Read the title from the chapterconf if it exists (for prettier header)
     root_config = read_chapter_config(directory_path)
-    if root_config and root_config['title']:
-        chapter_title = root_config['title']
-    
-    # The parent index file path (e.g., source/chapters/my_chapter/index.rst)
-    index_path = os.path.join(directory_path, 'index.rst')
-    
-    # Create header and toctree content
-    header = f"{chapter_title}\n{'=' * len(chapter_title)}\n\n"
 
-    # Ensure a blank line separates the options from the links
-    toctree_content = (
-        ".. toctree::\n"
-        "   :maxdepth: 2\n"
-        f"   :caption: {chapter_title} Content:\n\n"
-        + "\n".join(toctree_entries) + "\n"
-    )
-
-    with open(index_path, 'w', encoding='utf-8') as f:
-        f.write(header)
-        f.write(toctree_content)
-
-    print(f"  > Index generated: {os.path.relpath(index_path, root_dir)} ({len(items_to_link)} links)")
-    if issues_found:
-        print(f"‼️ REVIEW REQUIRED: Issues found in files in {directory_path}.")
+    if root_config:
+        # Get the title for the index file from the last part of the path
+        chapter_title = os.path.basename(directory_path)
+        if root_config['title']:
+            chapter_title = root_config['title']
         
+        # The parent index file path (e.g., source/chapters/my_chapter/index.rst)
+        index_path = os.path.join(directory_path, 'index.rst')
+        
+        # Create header and toctree content
+        header = f"{chapter_title}\n{'=' * len(chapter_title)}\n\n"
+
+        # Ensure a blank line separates the options from the links
+        toctree_content = (
+            ".. toctree::\n"
+            "   :maxdepth: 2\n"
+            f"   :caption: {chapter_title} Content:\n\n"
+            + "\n".join(toctree_entries) + "\n"
+        )
+
+        with open(index_path, 'w', encoding='utf-8') as f:
+            f.write(header)
+            f.write(toctree_content)
+
+        print(f"  ✨ Index generated: {os.path.relpath(index_path, root_dir)} ({len(items_to_link)} links)")
+        if issues_found:
+            print(f"‼️ REVIEW REQUIRED: Issues found in files in {directory_path}.")
+    else:
+        print(f"  ⏩ Skipping index generation for container directory: {directory_path}")
+
     return items_to_link
 
 # --- Master Index (Top-Level) Generation ---
@@ -311,7 +315,7 @@ if __name__ == '__main__':
     ROOT_DIR = args.root_dir
     CHAPTERS_ROOT = os.path.join(ROOT_DIR, CHAPTERS_SUB_DIR)
     
-    print(f"--- Sphinx Dynamic Chapter Generator Initiated (Root: {ROOT_DIR}) ---")
+    print(f"▶️ Sphinx Dynamic Chapter Generator Initiated (Root: {ROOT_DIR})")
     
     if not os.path.isdir(CHAPTERS_ROOT):
         print(f"❌ Fatal Error: Chapter root directory not found: {CHAPTERS_ROOT}")
@@ -344,4 +348,4 @@ if __name__ == '__main__':
     # Final step: Update the master index
     update_master_index(ROOT_DIR, top_level_chapters)
     
-    print("\n--- Generator Complete. ---")
+    print("\n✅ Generator Complete. ")
