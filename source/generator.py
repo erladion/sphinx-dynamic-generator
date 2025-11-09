@@ -153,10 +153,11 @@ def process_directory(root_dir: str, directory_path: str, chapter_relative_path:
         # Case A: SUB-CHAPTER FOLDER (Requires .chapterconf)
         if os.path.isdir(full_path):
             config = read_chapter_config(full_path)
-            if config:
-                # Recursively process the sub-chapter first
-                sub_chapter_content = process_directory(root_dir, full_path, relative_path_name)
-                
+            
+            # Recursively process the sub-chapter first
+            sub_chapter_content = process_directory(root_dir, full_path, relative_path_name)
+
+            if config:    
                 # Use the config data for linking in the parent index
                 item_data.update({
                     'order': config['order'],
@@ -165,6 +166,18 @@ def process_directory(root_dir: str, directory_path: str, chapter_relative_path:
                     'link_path': f"{item}/index"
                 })
                 items_to_link.append(item_data)
+            else:
+                print(f"  📂 Merging content from container folder: {full_path}")
+                # Append all files found in the subfolder (which are returned by the recursive call)
+                # The 'link_path' for these items must be made RELATIVE TO THE CURRENT INDEX.RST.
+                
+                for sub_item in sub_chapter_content:
+                    # Adjust the link_path to be relative to the *current* directory_path index.rst
+                    # e.g., if current index is chapter_A/index.rst, and the sub_item link is chapter_A_Sub/file,
+                    # the new link path must be chapter_A_Sub/file
+                    if sub_item['link_path']:
+                        sub_item['link_path'] = os.path.join(item, sub_item['link_path'])
+                        items_to_link.append(sub_item)
 
         # Case B: CONTENT FILE (.md or .rst)
         elif item != 'index.rst':
