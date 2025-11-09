@@ -1,8 +1,8 @@
 <p align="center">
-    <img src="source/_static/logo_4.png" alt="drawing" width="400"/>
+    <img src="source/_static/logo.png" width="400"/>
 </p>
 
-Testing out sphinx generation from dynamically available content
+Testing out sphinx generation from dynamically available content.
 
 The base of the project is the generator.py which builds up the necessary index.rst files expected by sphinx.
 It does this based on metadata found in folders, subfolders and files in the chapters folder (which is assumed to exist).

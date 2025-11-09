@@ -44,7 +44,7 @@ exclude_patterns = ['index_template.rst']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_logo = "_static/logo_4.png"
+html_logo = "_static/logo.png"
 html_favicon = html_logo
 html_theme = 'furo' # 'alabaster'
 html_show_sphinx = False
@@ -112,7 +112,7 @@ latex_elements = {
     \vskip 2em
     
     % --- 3. LOGO INSERTION POINT (CENTERED) ---
-    \includegraphics[width=10cm]{logo_4.png} \par
+    \includegraphics[width=10cm]{logo.png} \par
     \vskip 2em % Space after logo
     
     % --- 4. DATE ---
