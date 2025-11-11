@@ -54,6 +54,8 @@ html_theme_options = {
     "sidebar_hide_name": True,
 }
 
+html_js_files = ["js/furo-toc-persistence.js"]
+
 should_include = True
 production_build = False
 
