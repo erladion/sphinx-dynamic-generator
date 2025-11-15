@@ -1,5 +1,6 @@
-:content_order: 40
-:content_title: Common Troubleshooting
+.. metadata::
+   :content_order: 40
+   :content_title: Common Troubleshooting
 
 Troubleshooting
 ===============

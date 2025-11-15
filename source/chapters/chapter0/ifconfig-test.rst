@@ -1,5 +1,6 @@
-:content_order: 20
-:content_title: Testing config 
+.. metadata::
+   :content_order: 20
+   :content_title: Testing config 
 
 Ifconfig Testing Document
 =========================

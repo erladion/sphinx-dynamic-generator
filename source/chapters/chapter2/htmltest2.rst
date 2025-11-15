@@ -1,5 +1,6 @@
-:content_order: 5
-:content_title: HTML Analytics Dashboard
+.. metadata::
+   :content_order: 5
+   :content_title: HTML Analytics Dashboard
 
 Raw HTML Content Example
 ====================================

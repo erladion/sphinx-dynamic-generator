@@ -1,5 +1,7 @@
-:content_order: 20
-:content_title: Basic Installation Steps
+.. metadata::
+   :content_order: 20
+   :content_title: Basic Installation Steps
+
 
 Installation Guide
 ==================

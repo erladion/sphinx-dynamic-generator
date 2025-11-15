@@ -1,5 +1,6 @@
-:content_order: 10
-:content_title: Core RST Concepts
+.. metadata::
+   :content_order: 10
+   :content_title: Core RST Concepts
 
 .. _starting-point:
 

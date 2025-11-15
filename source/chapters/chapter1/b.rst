@@ -1,5 +1,6 @@
-:content_order: 30
-:content_title: Configuration Parameters
+.. metadata::
+   :content_order: 30
+   :content_title: Configuration Parameters
 
 Settings Reference
 ==================

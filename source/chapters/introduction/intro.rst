@@ -1,5 +1,6 @@
-:content_order: 10
-:content_title: Chapter Overview and Goals
+.. metadata::
+   :content_order: 10
+   :content_title: Chapter Overview and Goals
 
 Project Overview
 ================

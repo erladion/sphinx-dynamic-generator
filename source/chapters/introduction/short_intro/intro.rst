@@ -1,5 +1,6 @@
-:content_order: 10
-:content_title: Short intro
+.. metadata::
+   :content_order: 10
+   :content_title: Short intro
 
 Short introduction
 ==================
