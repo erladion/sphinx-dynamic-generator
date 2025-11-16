@@ -27,7 +27,7 @@ extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.ifconfig',
     'env_config',
-    'metadata'
+    'dynamic_handling'
 ]
 
 source_suffix = {
@@ -53,6 +53,10 @@ html_css_files = ['style.css']
 html_show_sourcelink = False
 html_theme_options = { 
     "sidebar_hide_name": True,
+}
+
+dynamic_handling_options = {
+    "chapters_dir" : "chapters"
 }
 
 html_js_files = ["js/furo-toc-persistence.js"]
@@ -127,3 +131,8 @@ latex_elements = {
 \makeatother
 '''
 }
+
+rst_prolog = f"""
+.. |project| replace:: {project}
+.. |copyright| replace:: {copyright}
+"""
