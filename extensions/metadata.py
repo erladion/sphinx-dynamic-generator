@@ -28,7 +28,7 @@ class MetadataDirective(Directive):
 
         # Create a custom Docutils node to hold the metadata data.
         # This node will be ignored by the final HTML builder but is visible 
-        # to your Python script during the Sphinx environment build phase.
+        # during the Sphinx environment build phase.
         metadata_node = metadata_node_class(metadata=metadata)
         
         # Ensure the node is included in the document structure
