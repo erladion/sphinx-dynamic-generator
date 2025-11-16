@@ -6,7 +6,6 @@ from docutils import nodes
 from sphinx.util import logging
 from typing import Dict, List, Any
 
-
 class MetadataDirective(Directive):
     """
     Parses a YAML block of custom metadata (order, content destination, etc.)
@@ -53,7 +52,6 @@ class MetadataEndDirective(Directive):
 
 logger = logging.getLogger(__name__)
 
-# We will define them dynamically in the main function based on the passed root.
 MASTER_INDEX_FILE = 'index_template.rst'
 PLACEHOLDER = '<<DYNAMIC_CHAPTER_LINKS>>'
 CHAPTERS_SUB_DIR = 'chapters'
@@ -275,11 +273,9 @@ def process_directory(root_dir: str, directory_path: str, chapter_relative_path:
         display_title = item['title']
         link_path = item['link_path']
 
-        # Note: Indentation (3 spaces) for links inside chapter index is added here
         if display_title and display_title != link_path:
             toctree_entries.append(f"   {display_title} <{link_path}>")
         else:
-            # Simple syntax: just the path (Sphinx uses the document's internal title)
             toctree_entries.append(f"   {link_path}")
             
     # Write index.rst file
@@ -376,7 +372,6 @@ def update_master_index(root_dir: str, all_chapters: List[Dict[str, Any]]):
 
     except IOError as e:
         logger.error(f"❌ Fatal Error: Could not access or write files: {e}")
-
 
 def generate_combined_includes(root_dir: str):
     """
